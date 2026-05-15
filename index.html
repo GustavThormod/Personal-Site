@@ -816,6 +816,30 @@
     /* ── LOAD GLB MODELS ───────────────────────────────────────── */
     const gltfLoader = new THREE.GLTFLoader();
 
+    // Concrete dish → Project slot 1 (swap out placeholder)
+    gltfLoader.load('Conrete_Dish.glb', (gltf) => {
+      const item  = items[1];
+      const model = gltf.scene;
+
+      item.group.remove(item.objMesh);
+
+      const box    = new THREE.Box3().setFromObject(model);
+      const size   = box.getSize(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z);
+      model.scale.setScalar(1.2 / maxDim);
+
+      box.setFromObject(model);
+      const centre = box.getCenter(new THREE.Vector3());
+      model.position.x -= centre.x;
+      model.position.z -= centre.z;
+      model.position.y  = 0.9 - box.min.y * (1.2 / maxDim);
+
+      model.traverse(child => { if (child.isMesh) child.castShadow = true; });
+
+      item.group.add(model);
+      item.objMesh = model;
+    });
+
     // Blue cube → Project slot 0 (swap out placeholder)
     gltfLoader.load('blue_cube.glb', (gltf) => {
       const item  = items[0];
