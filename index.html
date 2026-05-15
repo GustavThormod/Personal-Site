@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gustav Thormod Nielsen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&family=Merriweather:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -21,7 +21,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      font-family: 'Merriweather', Georgia, serif;
       background: var(--off-white);
       color: var(--dark-grey);
       overflow-x: hidden;
@@ -35,10 +35,22 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 28px 52px;
+      padding: 18px 52px;
+      background: var(--off-white);
+    }
+
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 52px;
+      right: 52px;
+      height: 1px;
+      background: var(--light-grey);
     }
 
     .nav-name {
+      font-family: 'Raleway', sans-serif;
       font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.12em;
@@ -53,6 +65,7 @@
     }
 
     .nav-links a {
+      font-family: 'Raleway', sans-serif;
       font-size: 12px;
       font-weight: 400;
       letter-spacing: 0.04em;
@@ -101,11 +114,20 @@
     }
 
     .proj-title {
-      font-size: 30px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 36px;
       font-weight: 300;
       letter-spacing: -0.025em;
       color: var(--dark-grey);
       margin-bottom: 6px;
+    }
+
+    .proj-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 0;
     }
 
     .proj-year {
@@ -114,42 +136,72 @@
       letter-spacing: 0.04em;
     }
 
-    #view-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 28px;
-      border: 1px solid var(--dark-grey);
-      font-family: inherit;
+    .proj-title-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .proj-version {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--mid-grey);
+      border: 1px solid var(--light-grey);
+      padding: 2px 8px;
+      flex-shrink: 0;
+    }
+
+    .pv-title-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .pv-header-version {
+      font-family: 'Raleway', sans-serif;
       font-size: 10px;
       font-weight: 500;
       letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--dark-grey);
-      background: transparent;
-      cursor: pointer;
-      pointer-events: all;
-      transition: background 0.2s, color 0.2s;
+      color: var(--mid-grey);
+      border: 1px solid var(--light-grey);
+      padding: 3px 10px;
+      flex-shrink: 0;
     }
 
-    #view-btn:hover { background: var(--dark-grey); color: var(--white); }
+    #view-btn {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--mid-grey);
+      background: none; border: 1px solid var(--light-grey);
+      cursor: pointer; padding: 10px 24px;
+      pointer-events: all;
+      transition: all 0.2s;
+    }
+
+    #view-btn:hover { color: var(--dark-grey); border-color: var(--dark-grey); }
 
     #wip-badge {
       display: none;
       margin-top: 20px;
-      padding: 8px 20px;
-      border: 1px solid var(--light-grey);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--mid-grey);
+      border: 1px solid var(--light-grey);
+      padding: 10px 24px;
     }
 
     /* ─── CAROUSEL ARROWS ─────────────────────────────────────── */
     .c-arrow {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      bottom: 130px;
       z-index: 10;
       background: none;
       border: none;
@@ -164,8 +216,8 @@
       user-select: none;
     }
     .c-arrow:hover { opacity: 0.9; }
-    .c-arrow.left  { left: 36px; }
-    .c-arrow.right { right: 36px; }
+    .c-arrow.left  { left: calc(50% - 430px); }
+    .c-arrow.right { right: calc(50% - 430px); }
 
     /* ─── DOTS ────────────────────────────────────────────────── */
     #dots {
@@ -208,6 +260,7 @@
     }
 
     .section-label {
+      font-family: 'Raleway', sans-serif;
       font-size: 10px;
       font-weight: 500;
       letter-spacing: 0.2em;
@@ -225,6 +278,7 @@
     }
 
     .about-h {
+      font-family: 'Raleway', sans-serif;
       font-size: 38px;
       font-weight: 300;
       letter-spacing: -0.03em;
@@ -279,7 +333,7 @@
     .cv-row:first-child { border-top: 1px solid var(--light-grey); }
 
     .cv-year  { font-size: 12px; color: var(--mid-grey); padding-top: 2px; }
-    .cv-role  { font-size: 15px; font-weight: 400; color: var(--dark-grey); margin-bottom: 4px; }
+    .cv-role  { font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 400; color: var(--dark-grey); margin-bottom: 4px; }
     .cv-place { font-size: 13px; font-weight: 300; color: var(--mid-grey); }
     .cv-type  {
       font-size: 10px; font-weight: 500;
@@ -296,6 +350,7 @@
     }
 
     .contact-h {
+      font-family: 'Raleway', sans-serif;
       font-size: 52px;
       font-weight: 300;
       letter-spacing: -0.04em;
@@ -329,61 +384,130 @@
     }
     footer span { font-size: 11px; color: var(--mid-grey); }
 
-    /* ─── MODAL ───────────────────────────────────────────────── */
-    #modal {
+    /* ─── PROJECT VIEW ────────────────────────────────────────── */
+    #project-view {
       position: fixed;
       inset: 0;
-      background: rgba(246, 246, 246, 0.97);
       z-index: 300;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      background: var(--off-white);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.45s ease;
     }
-    #modal.open { opacity: 1; pointer-events: all; }
+    #project-view.open { opacity: 1; pointer-events: all; }
 
-    #modal-close {
-      position: absolute;
-      top: 32px; right: 52px;
-      font-family: inherit;
-      font-size: 11px; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--mid-grey);
-      background: none; border: none; cursor: pointer;
-      transition: color 0.2s;
+    /* Left: sticky model panel */
+    .pv-left {
+      width: 50%;
+      height: 100vh;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
     }
-    #modal-close:hover { color: var(--dark-grey); }
-
-    .modal-inner {
-      max-width: 600px;
+    #pv-canvas {
       width: 100%;
-      padding: 0 52px;
+      height: 100%;
+      display: block;
     }
 
-    .modal-cat {
+    /* Right: scrollable content panel */
+    .pv-right {
+      width: 50%;
+      height: 100vh;
+      overflow-y: auto;
+      border-left: 1px solid var(--light-grey);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pv-header {
+      padding: 80px 48px 36px;
+      border-bottom: 1px solid var(--light-grey);
+      position: sticky;
+      top: 0;
+      background: var(--off-white);
+      z-index: 10;
+    }
+
+    .pv-header-cat {
+      font-family: 'Raleway', sans-serif;
       font-size: 10px; font-weight: 500;
       letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--mid-grey); margin-bottom: 20px;
+      color: var(--mid-grey); margin-bottom: 10px;
     }
 
-    .modal-title {
-      font-size: 34px; font-weight: 300;
-      letter-spacing: -0.03em; color: var(--dark-grey);
-      margin-bottom: 28px;
+    .pv-header-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 30px; font-weight: 300;
+      letter-spacing: -0.025em;
+      color: var(--dark-grey);
     }
 
-    .modal-desc {
-      font-size: 15px; font-weight: 300;
+    /* Content blocks */
+    .pv-content {
+      padding: 48px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .pv-block-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--mid-grey); margin-bottom: 14px;
+    }
+
+    .pv-block p {
+      font-size: 14px; font-weight: 300;
       line-height: 1.85; color: var(--mid-grey);
     }
 
-    .modal-wip {
-      font-size: 13px; font-weight: 300;
-      color: var(--mid-grey); line-height: 1.7;
+    .pv-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--light-grey);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mid-grey);
     }
+
+    .pv-video-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--dark-grey);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mid-grey);
+    }
+
+    /* Footer with close button */
+    .pv-footer {
+      padding: 24px 48px;
+      border-top: 1px solid var(--light-grey);
+      position: sticky;
+      bottom: 0;
+      background: var(--off-white);
+    }
+
+    #pv-close {
+      font-family: 'Raleway', inherit;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--mid-grey);
+      background: none; border: 1px solid var(--light-grey);
+      cursor: pointer; padding: 10px 24px;
+      transition: all 0.2s;
+    }
+    #pv-close:hover { color: var(--dark-grey); border-color: var(--dark-grey); }
   </style>
 </head>
 <body>
@@ -392,9 +516,9 @@
   <nav>
     <span class="nav-name">Gustav Thormod Nielsen</span>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#cv">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
@@ -406,113 +530,76 @@
     <button class="c-arrow right" id="next-btn">&#8594;</button>
 
     <div id="project-info">
-      <div class="proj-cat"   id="proj-cat">—</div>
-      <div class="proj-title" id="proj-title">—</div>
-      <div class="proj-year"  id="proj-year">—</div>
+      <div class="proj-title-wrap">
+        <span class="proj-title"   id="proj-title">—</span>
+        <span class="proj-version" id="proj-version">—</span>
+      </div>
       <button id="view-btn">View Project</button>
       <div    id="wip-badge">In Progress</div>
     </div>
 
     <div id="dots"></div>
-    <div class="scroll-hint">Scroll ↓</div>
+
   </div>
 
-  <!-- ABOUT -->
-  <div class="section-wrap" id="about">
-    <div class="section-label">About</div>
-    <div class="about-grid">
-      <div>
-        <h2 class="about-h">Designer working at the intersection of form, function, and experience.</h2>
-        <p class="about-p">Placeholder bio — replace with your own. This is where you describe your philosophy, your approach to design, and what drives your practice.</p>
-        <p class="about-p">Currently based in [City]. Open to selected collaborations and commissions.</p>
-      </div>
-      <div class="details-stack">
-        <div class="detail-item">
-          <label>Name</label>
-          <span>Gustav Thormod Nielsen</span>
-        </div>
-        <div class="detail-item">
-          <label>Email</label>
-          <a href="mailto:gustav.t.nielsen@gmail.com">gustav.t.nielsen@gmail.com</a>
-        </div>
-        <div class="detail-item">
-          <label>Phone</label>
-          <a href="tel:+4917096603050">+49 170 9660350</a>
-        </div>
-        <div class="detail-item">
-          <label>Available for</label>
-          <span>Freelance · Full-time · Collaboration</span>
-        </div>
-      </div>
+
+  <!-- PROJECT VIEW -->
+  <div id="project-view">
+
+    <!-- Left: model -->
+    <div class="pv-left">
+      <canvas id="pv-canvas"></canvas>
     </div>
-  </div>
 
-  <!-- CV -->
-  <div class="section-wrap" id="cv">
-    <div class="section-label">Experience</div>
-    <div>
-      <div class="cv-row">
-        <span class="cv-year">2023 — Now</span>
-        <div><div class="cv-role">Senior Designer</div><div class="cv-place">Placeholder Studio</div></div>
-        <span class="cv-type">Full-time</span>
-      </div>
-      <div class="cv-row">
-        <span class="cv-year">2021 — 2023</span>
-        <div><div class="cv-role">Designer</div><div class="cv-place">Another Studio</div></div>
-        <span class="cv-type">Full-time</span>
-      </div>
-      <div class="cv-row">
-        <span class="cv-year">2020</span>
-        <div><div class="cv-role">Design Intern</div><div class="cv-place">Studio Placeholder</div></div>
-        <span class="cv-type">Internship</span>
-      </div>
-      <div class="cv-row">
-        <span class="cv-year">2018 — 2021</span>
-        <div><div class="cv-role">BA Design</div><div class="cv-place">University Placeholder</div></div>
-        <span class="cv-type">Education</span>
-      </div>
-    </div>
-  </div>
+    <!-- Right: scrollable process content -->
+    <div class="pv-right">
 
-  <!-- CONTACT -->
-  <div class="section-wrap" id="contact">
-    <div class="section-label">Contact</div>
-    <div class="contact-grid">
-      <div class="contact-h">Let's work<br>together.</div>
-      <div class="contact-links">
-        <div class="c-link">
-          <label>Email</label>
-          <a href="mailto:gustav.t.nielsen@gmail.com">gustav.t.nielsen@gmail.com</a>
-        </div>
-        <div class="c-link">
-          <label>Phone</label>
-          <a href="tel:+4917096603050">+49 170 9660350</a>
-        </div>
-        <div class="c-link">
-          <label>LinkedIn</label>
-          <a href="#">/in/gustavthormodnielsen</a>
-        </div>
-        <div class="c-link">
-          <label>Instagram</label>
-          <a href="#">@placeholder</a>
+      <div class="pv-header">
+        <div class="pv-header-cat" id="pv-cat"></div>
+        <div class="pv-title-row">
+          <div class="pv-header-title" id="pv-title"></div>
+          <div class="pv-header-version" id="pv-version"></div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <span>© 2026 Gustav Thormod Nielsen</span>
-    <span>gustavthormodnielsen.com</span>
-  </footer>
+      <div class="pv-content">
 
-  <!-- MODAL -->
-  <div id="modal">
-    <button id="modal-close">Close ✕</button>
-    <div class="modal-inner">
-      <div class="modal-cat"   id="modal-cat"></div>
-      <div class="modal-title" id="modal-title"></div>
-      <div class="modal-desc"  id="modal-desc"></div>
+        <div class="pv-block">
+          <div class="pv-block-label">Overview</div>
+          <p>Placeholder — describe the brief, the challenge, and your initial approach to the problem.</p>
+        </div>
+
+        <div class="pv-block">
+          <div class="pv-block-label">Sketches</div>
+          <div class="pv-img-placeholder">Image / Sketch</div>
+        </div>
+
+        <div class="pv-block">
+          <div class="pv-block-label">Process</div>
+          <p>Placeholder — material explorations, iterations, key decisions made along the way.</p>
+        </div>
+
+        <div class="pv-block">
+          <div class="pv-block-label">Documentation</div>
+          <div class="pv-img-placeholder">Image / Photo</div>
+        </div>
+
+        <div class="pv-block">
+          <div class="pv-block-label">Video</div>
+          <div class="pv-video-placeholder">▶ Video</div>
+        </div>
+
+        <div class="pv-block">
+          <div class="pv-block-label">Outcome</div>
+          <p>Placeholder — final result, reflections, what you would do differently.</p>
+        </div>
+
+      </div>
+
+      <div class="pv-footer">
+        <button id="pv-close">← Close Project</button>
+      </div>
+
     </div>
   </div>
 
@@ -523,39 +610,44 @@
     /* ── PROJECTS DATA ─────────────────────────────────────────── */
     const PROJECTS = [
       {
-        title: 'Project Aether',
-        cat:   'Product Design',
-        year:  '2024',
-        wip:   false,
-        desc:  'A conceptual exploration of lightweight composite materials and modular assembly systems. Placeholder — replace with your real project description and process notes.',
+        title:   'Project Aether',
+        cat:     'Product Design',
+        year:    '2024',
+        version: 'v1.0',
+        wip:     false,
+        desc:    'A conceptual exploration of lightweight composite materials and modular assembly systems. Placeholder — replace with your real project description and process notes.',
       },
       {
-        title: 'Form Study 01',
-        cat:   'Industrial Design',
-        year:  '2024',
-        wip:   false,
-        desc:  'A series of geometric form studies examining the interplay between surface tension and structural integrity. Placeholder description.',
+        title:   'Form Study 01',
+        cat:     'Industrial Design',
+        year:    '2024',
+        version: 'v1.2',
+        wip:     false,
+        desc:    'A series of geometric form studies examining the interplay between surface tension and structural integrity. Placeholder description.',
       },
       {
-        title: 'Vessel Series',
-        cat:   'Object Design',
-        year:  '2023',
-        wip:   false,
-        desc:  'A collection of hand-finished vessels exploring the relationship between negative space and material weight. Placeholder description.',
+        title:   'Vessel Series',
+        cat:     'Object Design',
+        year:    '2023',
+        version: 'v2.0',
+        wip:     false,
+        desc:    'A collection of hand-finished vessels exploring the relationship between negative space and material weight. Placeholder description.',
       },
       {
-        title: '— / WIP',
-        cat:   'Work in Progress',
-        year:  '2025',
-        wip:   true,
-        desc:  '',
+        title:   '— / WIP',
+        cat:     'Work in Progress',
+        year:    '2025',
+        version: 'v0.1',
+        wip:     true,
+        desc:    '',
       },
       {
-        title: '— / WIP',
-        cat:   'Work in Progress',
-        year:  '2025',
-        wip:   true,
-        desc:  '',
+        title:   '— / WIP',
+        cat:     'Work in Progress',
+        year:    '2025',
+        version: 'v0.1',
+        wip:     true,
+        desc:    '',
       },
     ];
 
@@ -576,12 +668,11 @@
     /* ── SCENE ─────────────────────────────────────────────────── */
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xF6F6F6);
-    scene.fog = new THREE.FogExp2(0xF6F6F6, 0.038);
 
     /* ── CAMERA ────────────────────────────────────────────────── */
     const camera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.set(0, 3.8, 11);
-    camera.lookAt(0, 0.6, 0);
+    camera.position.set(0, 2.8, 11);
+    camera.lookAt(0, 0.2, 0);
 
     /* ── LIGHTS ────────────────────────────────────────────────── */
     scene.add(new THREE.AmbientLight(0xffffff, 0.55));
@@ -614,16 +705,32 @@
     /* ── FLOOR ─────────────────────────────────────────────────── */
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(60, 60),
-      new THREE.MeshStandardMaterial({ color: 0xEEEEEE, roughness: 1, metalness: 0 })
+      new THREE.MeshStandardMaterial({ color: 0xF6F6F6, roughness: 1, metalness: 0 })
     );
     floor.rotation.x = -Math.PI / 2;
-    floor.position.y = -0.02;
+    floor.position.y = 1.38;
     floor.receiveShadow = true;
     scene.add(floor);
+
+    /* ── PLATFORM RING ─────────────────────────────────────────── */
+    const platform = new THREE.Mesh(
+      new THREE.RingGeometry(5, 7, 128),
+      new THREE.MeshStandardMaterial({
+        color:     0xC0C0C0,
+        roughness: 0.95,
+        metalness: 0.0,
+        side:      THREE.DoubleSide,
+      })
+    );
+    platform.rotation.x = -Math.PI / 2;
+    platform.position.y = 1.4;
+    platform.receiveShadow = true;
+    scene.add(platform);
 
     /* ── CAROUSEL ──────────────────────────────────────────────── */
     const RADIUS = 5.8;
     const carousel = new THREE.Group();
+    carousel.position.y = 1.4;
     scene.add(carousel);
 
     // Placeholder geometries — one per project
@@ -638,30 +745,17 @@
     const items = PROJECTS.map((proj, i) => {
       const group = new THREE.Group();
 
-      /* disc base */
+      /* invisible placeholders — kept so animation refs don't break */
       const baseMesh = new THREE.Mesh(
         new THREE.CylinderGeometry(0.88, 0.88, 0.036, 72),
-        new THREE.MeshStandardMaterial({
-          color:            proj.wip ? 0x1a1a1a : 0xD4D4D4,
-          roughness:        0.18,
-          metalness:        0.55,
-          emissive:         new THREE.Color(proj.wip ? 0x000000 : 0xffffff),
-          emissiveIntensity: 0,
-        })
+        new THREE.MeshStandardMaterial({ visible: false })
       );
       baseMesh.receiveShadow = true;
       group.add(baseMesh);
 
-      /* thin ring around disc edge */
       const ringMesh = new THREE.Mesh(
         new THREE.TorusGeometry(0.88, 0.016, 8, 80),
-        new THREE.MeshStandardMaterial({
-          color:            proj.wip ? 0x333333 : 0xBBBBBB,
-          roughness:        0.1,
-          metalness:        0.8,
-          emissive:         new THREE.Color(proj.wip ? 0x000000 : 0xffffff),
-          emissiveIntensity: 0,
-        })
+        new THREE.MeshStandardMaterial({ visible: false })
       );
       ringMesh.rotation.x = Math.PI / 2;
       ringMesh.position.y = 0.018;
@@ -708,18 +802,19 @@
 
     /* ── INFO OVERLAY ──────────────────────────────────────────── */
     const infoEl    = document.getElementById('project-info');
-    const catEl     = document.getElementById('proj-cat');
     const titleEl   = document.getElementById('proj-title');
-    const yearEl    = document.getElementById('proj-year');
+
     const viewBtn   = document.getElementById('view-btn');
     const wipBadge  = document.getElementById('wip-badge');
+
+    const versionEl = document.getElementById('proj-version');
 
     function refreshInfo(idx, instant) {
       const p = PROJECTS[idx];
       const apply = () => {
-        catEl.textContent   = p.cat;
-        titleEl.textContent = p.title;
-        yearEl.textContent  = p.year;
+        titleEl.textContent   = p.title;
+
+        versionEl.textContent = p.version;
         viewBtn.style.display  = p.wip ? 'none'         : 'inline-block';
         wipBadge.style.display = p.wip ? 'inline-block' : 'none';
       };
@@ -733,6 +828,11 @@
 
     refreshInfo(0, true);
 
+    /* ── HIGHLIGHT FADE ─────────────────────────────────────────── */
+    let hlIntensity  = 1;   // current 0→1 multiplier
+    let hlDelayTimer = 0;   // counts up after a switch
+    let hlWaiting    = false; // true while in the 0.25s delay
+
     /* ── NAVIGATION ────────────────────────────────────────────── */
     function goTo(idx) {
       if (idx === currentIdx) return;
@@ -742,6 +842,10 @@
       currentIdx = idx;
       refreshDots();
       refreshInfo(idx, false);
+      // Reset highlight for fade-in after delay
+      hlIntensity  = 0;
+      hlDelayTimer = 0;
+      hlWaiting    = true;
     }
 
     document.getElementById('prev-btn').addEventListener('click', () => goTo((currentIdx - 1 + N) % N));
@@ -751,19 +855,72 @@
       if (e.key === 'ArrowRight') goTo((currentIdx + 1) % N);
     });
 
-    /* ── MODAL ─────────────────────────────────────────────────── */
-    const modal = document.getElementById('modal');
-    document.getElementById('modal-close').addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+    /* ── PROJECT VIEW ───────────────────────────────────────────── */
+    let pvRenderer = null, pvAnimId = null, pvClock2 = 0, pvModelRef = null;
 
-    viewBtn.addEventListener('click', () => {
-      const p = PROJECTS[currentIdx];
-      document.getElementById('modal-cat').textContent   = p.cat + ' — ' + p.year;
-      document.getElementById('modal-title').textContent = p.title;
-      document.getElementById('modal-desc').innerHTML    =
-        `<p class="modal-desc">${p.desc}</p>`;
-      modal.classList.add('open');
-    });
+    function openProjectView(idx) {
+      const p = PROJECTS[idx];
+      document.getElementById('pv-cat').textContent     = p.cat + ' — ' + p.year;
+      document.getElementById('pv-title').textContent   = p.title;
+      document.getElementById('pv-version').textContent = p.version;
+
+      // Reset scroll
+      document.querySelector('.pv-right').scrollTop = 0;
+
+      document.getElementById('project-view').classList.add('open');
+
+      // ── Second renderer for the isolated model ──
+      const pvCanvas = document.getElementById('pv-canvas');
+      pvCanvas.width  = pvCanvas.clientWidth  * Math.min(devicePixelRatio, 2);
+      pvCanvas.height = pvCanvas.clientHeight * Math.min(devicePixelRatio, 2);
+
+      pvRenderer = new THREE.WebGLRenderer({ canvas: pvCanvas, antialias: true });
+      pvRenderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+      pvRenderer.setSize(pvCanvas.clientWidth, pvCanvas.clientHeight);
+      pvRenderer.setClearColor(0xF6F6F6, 1);
+
+      const pvScene  = new THREE.Scene();
+      pvScene.background = new THREE.Color(0xF6F6F6);
+
+      const pvCam = new THREE.PerspectiveCamera(
+        45, pvCanvas.clientWidth / pvCanvas.clientHeight, 0.1, 100
+      );
+      pvCam.position.set(0, 0.5, 4.5);
+      pvCam.lookAt(0, 0, 0);
+
+      pvScene.add(new THREE.AmbientLight(0xffffff, 0.6));
+      const pvSun = new THREE.DirectionalLight(0xffffff, 0.8);
+      pvSun.position.set(3, 5, 5);
+      pvScene.add(pvSun);
+
+      // Clone the selected model's pivot group into the pv scene
+      pvModelRef = items[idx].objMesh.clone();
+      pvModelRef.position.set(0, 0, 0);
+      pvModelRef.rotation.y = 0;
+      pvScene.add(pvModelRef);
+
+      pvClock2 = 0;
+      function pvAnimate() {
+        pvAnimId = requestAnimationFrame(pvAnimate);
+        pvClock2 += 0.016;
+        if (pvModelRef) {
+          pvModelRef.rotation.y += 0.006;
+          pvModelRef.position.y  = Math.sin(pvClock2 * 1.6) * 0.08;
+        }
+        pvRenderer.render(pvScene, pvCam);
+      }
+      pvAnimate();
+    }
+
+    function closeProjectView() {
+      document.getElementById('project-view').classList.remove('open');
+      if (pvAnimId)   { cancelAnimationFrame(pvAnimId); pvAnimId = null; }
+      if (pvRenderer) { pvRenderer.dispose(); pvRenderer = null; }
+      pvModelRef = null;
+    }
+
+    viewBtn.addEventListener('click', () => openProjectView(currentIdx));
+    document.getElementById('pv-close').addEventListener('click', closeProjectView);
 
     /* ── ANIMATION LOOP ────────────────────────────────────────── */
     let clock = 0;
@@ -784,7 +941,7 @@
         /* float + slow self-rotation */
         const floatY = item.baseY + (selected ? Math.sin(clock * 1.6) * 0.06 : 0);
         item.objMesh.position.y = floatY;
-        item.objMesh.rotation.y += selected ? 0.006 : 0.0018;
+        item.objMesh.rotation.y -= selected ? 0.006 : 0.0018;
 
         /* scale */
         const ts = selected ? 1.07 : 0.93;
@@ -798,18 +955,96 @@
         }
       });
 
+      /* smoke particles — rise and reset for WIP items */
+      smokeParticles.forEach(sys => {
+        const posAttr = sys.geo.attributes.position;
+        for (let j = 0; j < sys.COUNT; j++) {
+          const d = sys.pData[j];
+          posAttr.array[j * 3]     += d.driftX;
+          posAttr.array[j * 3 + 1] += d.speed;
+          posAttr.array[j * 3 + 2] += d.driftZ;
+          if (posAttr.array[j * 3 + 1] - d.startY >= d.maxRise) {
+            const ang = Math.random() * Math.PI * 2;
+            const r   = Math.random() * 0.55;
+            posAttr.array[j * 3]     = Math.cos(ang) * r;
+            posAttr.array[j * 3 + 1] = d.startY;
+            posAttr.array[j * 3 + 2] = Math.sin(ang) * r;
+            d.driftX = (Math.random() - 0.5) * 0.001;
+            d.driftZ = (Math.random() - 0.5) * 0.001;
+          }
+        }
+        posAttr.needsUpdate = true;
+      });
+
       /* move selection spotlight to selected item world position */
       const sel = items[currentIdx];
       sel.group.getWorldPosition(tmpVec);
       selSpot.position.set(tmpVec.x, tmpVec.y + 7, tmpVec.z + 2);
       selSpot.target.position.copy(tmpVec);
-      selSpot.intensity = sel.proj.wip ? 0 : 1.8;
+      // Highlight fade: 0.25s delay then 0.5s linear fade-in
+      if (hlWaiting) {
+        hlDelayTimer += 0.016;
+        if (hlDelayTimer >= 0.5) hlWaiting = false;
+      } else {
+        hlIntensity = Math.min(1, hlIntensity + 0.016 / 0.5);
+      }
+
+      selSpot.intensity = sel.proj.wip ? 0 : 0.338 * hlIntensity;
 
       baseGlow.position.set(tmpVec.x, tmpVec.y + 0.4, tmpVec.z);
-      baseGlow.intensity = sel.proj.wip ? 0 : 1.2;
+      baseGlow.intensity = sel.proj.wip ? 0 : 0.225 * hlIntensity;
 
       renderer.render(scene, camera);
     }
+
+    /* ── SMOKE PARTICLES (WIP items) ──────────────────────────── */
+    const smokeParticles = [];
+
+    items.forEach((item) => {
+      if (!item.proj.wip) return;
+
+      const COUNT = 35;
+      const posArr = new Float32Array(COUNT * 3);
+      const pData  = [];
+      const BASE_Y = 0.4; // local-group y where smoke starts (just above ground of group)
+
+      for (let j = 0; j < COUNT; j++) {
+        const ang    = Math.random() * Math.PI * 2;
+        const r      = Math.random() * 0.55;
+        const startY = BASE_Y;
+        // Spread particles vertically on init so they don't all pop in at once
+        const initY  = startY + Math.random() * 2.2;
+        posArr[j * 3]     = Math.cos(ang) * r;
+        posArr[j * 3 + 1] = initY;
+        posArr[j * 3 + 2] = Math.sin(ang) * r;
+        pData.push({
+          startY,
+          maxRise: 1.8 + Math.random() * 1.2,
+          speed:   0.004 + Math.random() * 0.003,
+          driftX:  (Math.random() - 0.5) * 0.001,
+          driftZ:  (Math.random() - 0.5) * 0.001,
+        });
+      }
+
+      const geo     = new THREE.BufferGeometry();
+      const posAttr = new THREE.BufferAttribute(posArr, 3);
+      posAttr.setUsage(THREE.DynamicDrawUsage);
+      geo.setAttribute('position', posAttr);
+
+      const mat = new THREE.PointsMaterial({
+        color:           0x888888,
+        size:            0.11,
+        sizeAttenuation: true,
+        transparent:     true,
+        opacity:         0.22,
+        depthWrite:      false,
+      });
+
+      const pts = new THREE.Points(geo, mat);
+      item.group.add(pts);
+
+      smokeParticles.push({ pts, geo, posArr, pData, COUNT });
+    });
 
     animate();
 
