@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gustav Thormod Nielsen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white:       #FFFFFF;
+      --off-white:   #F6F6F6;
+      --light-grey:  #E4E4E4;
+      --mid-grey:    #9A9A9A;
+      --dark-grey:   #2C2C2C;
+      --black:       #111111;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      background: var(--off-white);
+      color: var(--dark-grey);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 52px;
+    }
+
+    .nav-name {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dark-grey);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--mid-grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--dark-grey); }
+
+    /* ─── HERO ────────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--off-white);
+    }
+
+    #three-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ─── PROJECT INFO OVERLAY ────────────────────────────────── */
+    #project-info {
+      position: absolute;
+      bottom: 88px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .proj-cat {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 10px;
+    }
+
+    .proj-title {
+      font-size: 30px;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: var(--dark-grey);
+      margin-bottom: 6px;
+    }
+
+    .proj-year {
+      font-size: 12px;
+      color: var(--mid-grey);
+      letter-spacing: 0.04em;
+    }
+
+    #view-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 28px;
+      border: 1px solid var(--dark-grey);
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dark-grey);
+      background: transparent;
+      cursor: pointer;
+      pointer-events: all;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    #view-btn:hover { background: var(--dark-grey); color: var(--white); }
+
+    #wip-badge {
+      display: none;
+      margin-top: 20px;
+      padding: 8px 20px;
+      border: 1px solid var(--light-grey);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+
+    /* ─── CAROUSEL ARROWS ─────────────────────────────────────── */
+    .c-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 20px;
+      color: var(--dark-grey);
+      opacity: 0.3;
+      font-size: 20px;
+      font-family: inherit;
+      line-height: 1;
+      transition: opacity 0.2s;
+      user-select: none;
+    }
+    .c-arrow:hover { opacity: 0.9; }
+    .c-arrow.left  { left: 36px; }
+    .c-arrow.right { right: 36px; }
+
+    /* ─── DOTS ────────────────────────────────────────────────── */
+    #dots {
+      position: absolute;
+      bottom: 44px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--light-grey);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .dot.active { background: var(--dark-grey); transform: scale(1.4); }
+
+    /* ─── SCROLL HINT ─────────────────────────────────────────── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      right: 52px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      z-index: 10;
+    }
+
+    /* ─── SECTIONS ────────────────────────────────────────────── */
+    .section-wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 110px 52px;
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 56px;
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 96px;
+      align-items: start;
+    }
+
+    .about-h {
+      font-size: 38px;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--dark-grey);
+      margin-bottom: 32px;
+    }
+
+    .about-p {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--mid-grey);
+      margin-bottom: 14px;
+    }
+
+    .details-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .detail-item label {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 5px;
+    }
+
+    .detail-item span,
+    .detail-item a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--dark-grey);
+      text-decoration: none;
+    }
+
+    .detail-item a:hover { text-decoration: underline; }
+
+    /* ─── CV ──────────────────────────────────────────────────── */
+    .cv-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 90px;
+      gap: 40px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--light-grey);
+      align-items: start;
+    }
+    .cv-row:first-child { border-top: 1px solid var(--light-grey); }
+
+    .cv-year  { font-size: 12px; color: var(--mid-grey); padding-top: 2px; }
+    .cv-role  { font-size: 15px; font-weight: 400; color: var(--dark-grey); margin-bottom: 4px; }
+    .cv-place { font-size: 13px; font-weight: 300; color: var(--mid-grey); }
+    .cv-type  {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--mid-grey); text-align: right; padding-top: 3px;
+    }
+
+    /* ─── CONTACT ─────────────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 96px;
+      align-items: end;
+    }
+
+    .contact-h {
+      font-size: 52px;
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: var(--dark-grey);
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 24px; }
+
+    .c-link label {
+      display: block;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--mid-grey); margin-bottom: 5px;
+    }
+
+    .c-link a {
+      font-size: 14px; color: var(--dark-grey);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .c-link a:hover { color: var(--mid-grey); }
+
+    /* ─── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--light-grey);
+      padding: 28px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+    }
+    footer span { font-size: 11px; color: var(--mid-grey); }
+
+    /* ─── MODAL ───────────────────────────────────────────────── */
+    #modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(246, 246, 246, 0.97);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #modal.open { opacity: 1; pointer-events: all; }
+
+    #modal-close {
+      position: absolute;
+      top: 32px; right: 52px;
+      font-family: inherit;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--mid-grey);
+      background: none; border: none; cursor: pointer;
+      transition: color 0.2s;
+    }
+    #modal-close:hover { color: var(--dark-grey); }
+
+    .modal-inner {
+      max-width: 600px;
+      width: 100%;
+      padding: 0 52px;
+    }
+
+    .modal-cat {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--mid-grey); margin-bottom: 20px;
+    }
+
+    .modal-title {
+      font-size: 34px; font-weight: 300;
+      letter-spacing: -0.03em; color: var(--dark-grey);
+      margin-bottom: 28px;
+    }
+
+    .modal-desc {
+      font-size: 15px; font-weight: 300;
+      line-height: 1.85; color: var(--mid-grey);
+    }
+
+    .modal-wip {
+      font-size: 13px; font-weight: 300;
+      color: var(--mid-grey); line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-name">Gustav Thormod Nielsen</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#cv">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div id="hero">
+    <canvas id="three-canvas"></canvas>
+
+    <button class="c-arrow left"  id="prev-btn">&#8592;</button>
+    <button class="c-arrow right" id="next-btn">&#8594;</button>
+
+    <div id="project-info">
+      <div class="proj-cat"   id="proj-cat">—</div>
+      <div class="proj-title" id="proj-title">—</div>
+      <div class="proj-year"  id="proj-year">—</div>
+      <button id="view-btn">View Project</button>
+      <div    id="wip-badge">In Progress</div>
+    </div>
+
+    <div id="dots"></div>
+    <div class="scroll-hint">Scroll ↓</div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section-wrap" id="about">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="about-h">Designer working at the intersection of form, function, and experience.</h2>
+        <p class="about-p">Placeholder bio — replace with your own. This is where you describe your philosophy, your approach to design, and what drives your practice.</p>
+        <p class="about-p">Currently based in [City]. Open to selected collaborations and commissions.</p>
+      </div>
+      <div class="details-stack">
+        <div class="detail-item">
+          <label>Name</label>
+          <span>Gustav Thormod Nielsen</span>
+        </div>
+        <div class="detail-item">
+          <label>Email</label>
+          <a href="mailto:gustav.t.nielsen@gmail.com">gustav.t.nielsen@gmail.com</a>
+        </div>
+        <div class="detail-item">
+          <label>Phone</label>
+          <a href="tel:+4917096603050">+49 170 9660350</a>
+        </div>
+        <div class="detail-item">
+          <label>Available for</label>
+          <span>Freelance · Full-time · Collaboration</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CV -->
+  <div class="section-wrap" id="cv">
+    <div class="section-label">Experience</div>
+    <div>
+      <div class="cv-row">
+        <span class="cv-year">2023 — Now</span>
+        <div><div class="cv-role">Senior Designer</div><div class="cv-place">Placeholder Studio</div></div>
+        <span class="cv-type">Full-time</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2021 — 2023</span>
+        <div><div class="cv-role">Designer</div><div class="cv-place">Another Studio</div></div>
+        <span class="cv-type">Full-time</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2020</span>
+        <div><div class="cv-role">Design Intern</div><div class="cv-place">Studio Placeholder</div></div>
+        <span class="cv-type">Internship</span>
+      </div>
+      <div class="cv-row">
+        <span class="cv-year">2018 — 2021</span>
+        <div><div class="cv-role">BA Design</div><div class="cv-place">University Placeholder</div></div>
+        <span class="cv-type">Education</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section-wrap" id="contact">
+    <div class="section-label">Contact</div>
+    <div class="contact-grid">
+      <div class="contact-h">Let's work<br>together.</div>
+      <div class="contact-links">
+        <div class="c-link">
+          <label>Email</label>
+          <a href="mailto:gustav.t.nielsen@gmail.com">gustav.t.nielsen@gmail.com</a>
+        </div>
+        <div class="c-link">
+          <label>Phone</label>
+          <a href="tel:+4917096603050">+49 170 9660350</a>
+        </div>
+        <div class="c-link">
+          <label>LinkedIn</label>
+          <a href="#">/in/gustavthormodnielsen</a>
+        </div>
+        <div class="c-link">
+          <label>Instagram</label>
+          <a href="#">@placeholder</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Gustav Thormod Nielsen</span>
+    <span>gustavthormodnielsen.com</span>
+  </footer>
+
+  <!-- MODAL -->
+  <div id="modal">
+    <button id="modal-close">Close ✕</button>
+    <div class="modal-inner">
+      <div class="modal-cat"   id="modal-cat"></div>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-desc"  id="modal-desc"></div>
+    </div>
+  </div>
+
+  <!-- THREE.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    /* ── PROJECTS DATA ─────────────────────────────────────────── */
+    const PROJECTS = [
+      {
+        title: 'Project Aether',
+        cat:   'Product Design',
+        year:  '2024',
+        wip:   false,
+        desc:  'A conceptual exploration of lightweight composite materials and modular assembly systems. Placeholder — replace with your real project description and process notes.',
+      },
+      {
+        title: 'Form Study 01',
+        cat:   'Industrial Design',
+        year:  '2024',
+        wip:   false,
+        desc:  'A series of geometric form studies examining the interplay between surface tension and structural integrity. Placeholder description.',
+      },
+      {
+        title: 'Vessel Series',
+        cat:   'Object Design',
+        year:  '2023',
+        wip:   false,
+        desc:  'A collection of hand-finished vessels exploring the relationship between negative space and material weight. Placeholder description.',
+      },
+      {
+        title: '— / WIP',
+        cat:   'Work in Progress',
+        year:  '2025',
+        wip:   true,
+        desc:  '',
+      },
+      {
+        title: '— / WIP',
+        cat:   'Work in Progress',
+        year:  '2025',
+        wip:   true,
+        desc:  '',
+      },
+    ];
+
+    const N = PROJECTS.length;
+    let currentIdx = 0;
+    let spinTarget  = 0; // accumulated rotation (radians)
+    let spinCurrent = 0;
+    const STEP = (2 * Math.PI) / N;
+
+    /* ── RENDERER ──────────────────────────────────────────────── */
+    const canvas   = document.getElementById('three-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type    = THREE.PCFSoftShadowMap;
+
+    /* ── SCENE ─────────────────────────────────────────────────── */
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xF6F6F6);
+    scene.fog = new THREE.FogExp2(0xF6F6F6, 0.038);
+
+    /* ── CAMERA ────────────────────────────────────────────────── */
+    const camera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 3.8, 11);
+    camera.lookAt(0, 0.6, 0);
+
+    /* ── LIGHTS ────────────────────────────────────────────────── */
+    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+
+    const sunLight = new THREE.DirectionalLight(0xffffff, 0.75);
+    sunLight.position.set(5, 10, 7);
+    sunLight.castShadow = true;
+    sunLight.shadow.mapSize.set(2048, 2048);
+    sunLight.shadow.camera.near = 1;
+    sunLight.shadow.camera.far  = 40;
+    sunLight.shadow.camera.left = sunLight.shadow.camera.bottom = -10;
+    sunLight.shadow.camera.right = sunLight.shadow.camera.top   =  10;
+    scene.add(sunLight);
+
+    // Soft fill from below-front
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.25);
+    fillLight.position.set(-3, -2, 8);
+    scene.add(fillLight);
+
+    // Selection spot (follows selected item)
+    const selSpot = new THREE.SpotLight(0xffffff, 0, 12, Math.PI / 7, 0.4, 1);
+    selSpot.castShadow = false;
+    scene.add(selSpot);
+    scene.add(selSpot.target);
+
+    // Under-glow for selected base
+    const baseGlow = new THREE.PointLight(0xffffff, 0, 3.5, 2);
+    scene.add(baseGlow);
+
+    /* ── FLOOR ─────────────────────────────────────────────────── */
+    const floor = new THREE.Mesh(
+      new THREE.PlaneGeometry(60, 60),
+      new THREE.MeshStandardMaterial({ color: 0xEEEEEE, roughness: 1, metalness: 0 })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -0.02;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    /* ── CAROUSEL ──────────────────────────────────────────────── */
+    const RADIUS = 5.8;
+    const carousel = new THREE.Group();
+    scene.add(carousel);
+
+    // Placeholder geometries — one per project
+    const geos = [
+      new THREE.BoxGeometry(0.85, 1.35, 0.85),
+      new THREE.IcosahedronGeometry(0.72, 1),
+      new THREE.CylinderGeometry(0.35, 0.58, 1.45, 7),
+      new THREE.BoxGeometry(0.95, 1.2, 0.95),
+      new THREE.OctahedronGeometry(0.72),
+    ];
+
+    const items = PROJECTS.map((proj, i) => {
+      const group = new THREE.Group();
+
+      /* disc base */
+      const baseMesh = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.88, 0.88, 0.036, 72),
+        new THREE.MeshStandardMaterial({
+          color:            proj.wip ? 0x1a1a1a : 0xD4D4D4,
+          roughness:        0.18,
+          metalness:        0.55,
+          emissive:         new THREE.Color(proj.wip ? 0x000000 : 0xffffff),
+          emissiveIntensity: 0,
+        })
+      );
+      baseMesh.receiveShadow = true;
+      group.add(baseMesh);
+
+      /* thin ring around disc edge */
+      const ringMesh = new THREE.Mesh(
+        new THREE.TorusGeometry(0.88, 0.016, 8, 80),
+        new THREE.MeshStandardMaterial({
+          color:            proj.wip ? 0x333333 : 0xBBBBBB,
+          roughness:        0.1,
+          metalness:        0.8,
+          emissive:         new THREE.Color(proj.wip ? 0x000000 : 0xffffff),
+          emissiveIntensity: 0,
+        })
+      );
+      ringMesh.rotation.x = Math.PI / 2;
+      ringMesh.position.y = 0.018;
+      group.add(ringMesh);
+
+      /* main object */
+      const objMesh = new THREE.Mesh(
+        geos[i],
+        new THREE.MeshStandardMaterial({
+          color:     proj.wip ? 0x080808 : 0xBEBEBE,
+          roughness: proj.wip ? 0.97 : 0.12,
+          metalness: proj.wip ? 0.0  : 0.65,
+        })
+      );
+      objMesh.position.y = 0.9;
+      objMesh.castShadow = true;
+      group.add(objMesh);
+
+      /* place on circle */
+      const angle = i * STEP;
+      group.position.set(Math.sin(angle) * RADIUS, 0, Math.cos(angle) * RADIUS);
+      group.rotation.y = -angle; // face center
+
+      carousel.add(group);
+
+      return { group, baseMesh, ringMesh, objMesh, proj,
+               baseAngle: angle,
+               baseY: 0.9, scale: new THREE.Vector3(1, 1, 1) };
+    });
+
+    /* ── DOTS ──────────────────────────────────────────────────── */
+    const dotsEl = document.getElementById('dots');
+    const dotEls = PROJECTS.map((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+      return d;
+    });
+
+    function refreshDots() {
+      dotEls.forEach((d, i) => d.className = 'dot' + (i === currentIdx ? ' active' : ''));
+    }
+
+    /* ── INFO OVERLAY ──────────────────────────────────────────── */
+    const infoEl    = document.getElementById('project-info');
+    const catEl     = document.getElementById('proj-cat');
+    const titleEl   = document.getElementById('proj-title');
+    const yearEl    = document.getElementById('proj-year');
+    const viewBtn   = document.getElementById('view-btn');
+    const wipBadge  = document.getElementById('wip-badge');
+
+    function refreshInfo(idx, instant) {
+      const p = PROJECTS[idx];
+      const apply = () => {
+        catEl.textContent   = p.cat;
+        titleEl.textContent = p.title;
+        yearEl.textContent  = p.year;
+        viewBtn.style.display  = p.wip ? 'none'         : 'inline-block';
+        wipBadge.style.display = p.wip ? 'inline-block' : 'none';
+      };
+      if (instant) {
+        apply();
+      } else {
+        infoEl.style.opacity = '0';
+        setTimeout(() => { apply(); infoEl.style.opacity = '1'; }, 220);
+      }
+    }
+
+    refreshInfo(0, true);
+
+    /* ── NAVIGATION ────────────────────────────────────────────── */
+    function goTo(idx) {
+      if (idx === currentIdx) return;
+      const fwd = ((idx - currentIdx) + N) % N;
+      const bwd = ((currentIdx - idx) + N) % N;
+      spinTarget += fwd <= bwd ? -(fwd * STEP) : (bwd * STEP);
+      currentIdx = idx;
+      refreshDots();
+      refreshInfo(idx, false);
+    }
+
+    document.getElementById('prev-btn').addEventListener('click', () => goTo((currentIdx - 1 + N) % N));
+    document.getElementById('next-btn').addEventListener('click', () => goTo((currentIdx + 1) % N));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  goTo((currentIdx - 1 + N) % N);
+      if (e.key === 'ArrowRight') goTo((currentIdx + 1) % N);
+    });
+
+    /* ── MODAL ─────────────────────────────────────────────────── */
+    const modal = document.getElementById('modal');
+    document.getElementById('modal-close').addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+
+    viewBtn.addEventListener('click', () => {
+      const p = PROJECTS[currentIdx];
+      document.getElementById('modal-cat').textContent   = p.cat + ' — ' + p.year;
+      document.getElementById('modal-title').textContent = p.title;
+      document.getElementById('modal-desc').innerHTML    =
+        `<p class="modal-desc">${p.desc}</p>`;
+      modal.classList.add('open');
+    });
+
+    /* ── ANIMATION LOOP ────────────────────────────────────────── */
+    let clock = 0;
+    const tmpVec = new THREE.Vector3();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      clock += 0.015;
+
+      /* smooth carousel spin */
+      spinCurrent += (spinTarget - spinCurrent) * 0.07;
+      carousel.rotation.y = spinCurrent;
+
+      /* update each item */
+      items.forEach((item, i) => {
+        const selected = i === currentIdx;
+
+        /* float + slow self-rotation */
+        const floatY = item.baseY + (selected ? Math.sin(clock * 1.6) * 0.06 : 0);
+        item.objMesh.position.y = floatY;
+        item.objMesh.rotation.y += selected ? 0.006 : 0.0018;
+
+        /* scale */
+        const ts = selected ? 1.07 : 0.93;
+        item.group.scale.lerp(tmpVec.set(ts, ts, ts), 0.06);
+
+        /* base + ring glow */
+        if (!item.proj.wip) {
+          const glow = selected ? (0.28 + Math.sin(clock * 2.2) * 0.06) : 0;
+          item.baseMesh.material.emissiveIntensity = glow;
+          item.ringMesh.material.emissiveIntensity = selected ? glow * 2 : 0;
+        }
+      });
+
+      /* move selection spotlight to selected item world position */
+      const sel = items[currentIdx];
+      sel.group.getWorldPosition(tmpVec);
+      selSpot.position.set(tmpVec.x, tmpVec.y + 7, tmpVec.z + 2);
+      selSpot.target.position.copy(tmpVec);
+      selSpot.intensity = sel.proj.wip ? 0 : 1.8;
+
+      baseGlow.position.set(tmpVec.x, tmpVec.y + 0.4, tmpVec.z);
+      baseGlow.intensity = sel.proj.wip ? 0 : 1.2;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    /* ── RESIZE ────────────────────────────────────────────────── */
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
