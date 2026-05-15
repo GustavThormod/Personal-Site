@@ -816,56 +816,42 @@
     /* ── LOAD GLB MODELS ───────────────────────────────────────── */
     const gltfLoader = new THREE.GLTFLoader();
 
-    // Concrete dish → Project slot 1 (swap out placeholder)
-    gltfLoader.load('Conrete_Dish.glb', (gltf) => {
-      const item  = items[1];
-      const model = gltf.scene;
+    // Helper: load a GLB, centre it in a pivot group, optional X tilt
+    // The animation loop drives pivot.position.y and pivot.rotation.y,
+    // so centering the model inside the pivot fixes the off-axis spin.
+    function loadModel(file, slotIndex, tiltX = 0) {
+      gltfLoader.load(file, (gltf) => {
+        const item  = items[slotIndex];
+        const model = gltf.scene;
+        const pivot = new THREE.Group();
 
-      item.group.remove(item.objMesh);
+        item.group.remove(item.objMesh);
 
-      const box    = new THREE.Box3().setFromObject(model);
-      const size   = box.getSize(new THREE.Vector3());
-      const maxDim = Math.max(size.x, size.y, size.z);
-      model.scale.setScalar(1.2 / maxDim);
+        // Normalise to a consistent display size
+        const box    = new THREE.Box3().setFromObject(model);
+        const size   = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        model.scale.setScalar(1.2 / maxDim);
 
-      box.setFromObject(model);
-      const centre = box.getCenter(new THREE.Vector3());
-      model.position.x -= centre.x;
-      model.position.z -= centre.z;
-      model.position.y  = 0.9 - box.min.y * (1.2 / maxDim);
+        // Re-measure after scaling and centre model inside pivot
+        box.setFromObject(model);
+        const centre = box.getCenter(new THREE.Vector3());
+        model.position.set(-centre.x, -centre.y, -centre.z);
 
-      model.traverse(child => { if (child.isMesh) child.castShadow = true; });
+        // Optional tilt (radians)
+        model.rotation.x = tiltX;
 
-      item.group.add(model);
-      item.objMesh = model;
-    });
+        model.traverse(child => { if (child.isMesh) child.castShadow = true; });
 
-    // Blue cube → Project slot 0 (swap out placeholder)
-    gltfLoader.load('blue_cube.glb', (gltf) => {
-      const item  = items[0];
-      const model = gltf.scene;
+        pivot.add(model);
+        item.group.add(pivot);
+        item.objMesh = pivot; // animation loop now spins & floats the pivot
+      });
+    }
 
-      // Remove placeholder mesh
-      item.group.remove(item.objMesh);
-
-      // Normalise size so it fits the carousel slot
-      const box    = new THREE.Box3().setFromObject(model);
-      const size   = box.getSize(new THREE.Vector3());
-      const maxDim = Math.max(size.x, size.y, size.z);
-      model.scale.setScalar(1.2 / maxDim);
-
-      // Centre and sit on the base
-      box.setFromObject(model);
-      const centre = box.getCenter(new THREE.Vector3());
-      model.position.x -= centre.x;
-      model.position.z -= centre.z;
-      model.position.y  = 0.9 - box.min.y * (1.2 / maxDim);
-
-      model.traverse(child => { if (child.isMesh) child.castShadow = true; });
-
-      item.group.add(model);
-      item.objMesh = model; // animation loop now drives this
-    });
+    loadModel('blue_cube.glb',      0);                   // slot 0 — no tilt
+    loadModel('Conrete_Dish.glb',   1, Math.PI / 6);      // slot 1 — 30° tilt
+    loadModel('Red_Concrete_Dish.glb', 2, Math.PI / 6);   // slot 2 — 30° tilt (test)
 
     /* ── RESIZE ────────────────────────────────────────────────── */
     window.addEventListener('resize', () => {
