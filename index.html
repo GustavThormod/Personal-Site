@@ -56,6 +56,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--dark-grey);
+      text-decoration: none;
     }
 
     .nav-links {
@@ -95,12 +96,12 @@
     .nav-cta:hover { background: #3d5490; border-color: #3d5490; color: var(--off-white); }
 
     /* ─── HERO ────────────────────────────────────────────────── */
-    #hero {
+#hero {
       position: relative;
       width: 100%;
       height: 100vh;
       overflow: hidden;
-      background: var(--off-white);
+      background: var(--white);
     }
 
     #three-canvas {
@@ -113,7 +114,7 @@
     /* ─── PROJECT INFO OVERLAY ────────────────────────────────── */
     #project-info {
       position: absolute;
-      bottom: 88px;
+      bottom: 128px;
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
@@ -242,7 +243,7 @@
     /* ─── CAROUSEL ARROWS ─────────────────────────────────────── */
     .c-arrow {
       position: absolute;
-      bottom: 130px;
+      bottom: 170px;
       z-index: 10;
       background: none;
       border: none;
@@ -263,7 +264,7 @@
     /* ─── DOTS ────────────────────────────────────────────────── */
     #dots {
       position: absolute;
-      bottom: 44px;
+      bottom: 84px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -454,7 +455,7 @@
     }
 
     .ds-header {
-      padding: 60px 48px 32px;
+      padding: 140px 48px 32px;
       border-bottom: 1px solid var(--light-grey);
       position: sticky;
       top: 56px;
@@ -537,6 +538,18 @@
       text-transform: uppercase; color: var(--mid-grey);
     }
 
+    .ds-img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .ds-video {
+      width: 100%;
+      display: block;
+      background: #000;
+    }
+
     .ds-wip-msg {
       flex: 1;
       display: flex;
@@ -582,11 +595,12 @@
 
   <!-- NAV -->
   <nav>
-    <span class="nav-name">Gustav Thormod Nielsen</span>
+    <a class="nav-name" href="index.html">Gustav Thormod Nielsen</a>
     <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="education.html">Education</a></li>
       <li><a href="experience.html">Experience</a></li>
+      <li><a href="education.html">Education</a></li>
     </ul>
     <a class="nav-cta" href="contact.html">Get In Touch</a>
   </nav>
@@ -633,32 +647,7 @@
         </div>
       </div>
 
-      <div class="ds-content" id="ds-content">
-        <div class="ds-block">
-          <div class="ds-block-label">Overview</div>
-          <p>Placeholder — describe the brief, the challenge, and your initial approach to the problem.</p>
-        </div>
-        <div class="ds-block">
-          <div class="ds-block-label">Sketches</div>
-          <div class="ds-img-placeholder">Image / Sketch</div>
-        </div>
-        <div class="ds-block">
-          <div class="ds-block-label">Process</div>
-          <p>Placeholder — material explorations, iterations, key decisions made along the way.</p>
-        </div>
-        <div class="ds-block">
-          <div class="ds-block-label">Documentation</div>
-          <div class="ds-img-placeholder">Image / Photo</div>
-        </div>
-        <div class="ds-block">
-          <div class="ds-block-label">Video</div>
-          <div class="ds-video-placeholder">▶ Video</div>
-        </div>
-        <div class="ds-block">
-          <div class="ds-block-label">Outcome</div>
-          <p>Placeholder — final result, reflections, what you would do differently.</p>
-        </div>
-      </div>
+      <div class="ds-content" id="ds-content"></div>
 
       <div class="ds-wip-msg" id="ds-wip-msg" style="display:none">Work in Progress</div>
 
@@ -678,28 +667,115 @@
     /* ── PROJECTS DATA ─────────────────────────────────────────── */
     const PROJECTS = [
       {
-        title:   'Project Aether',
+        title:   'Bedside Table Lamp',
+        cat:     'Product Design',
+        year:    '2025',
+        version: 'v1.0',
+        wip:     false,
+        desc:    'Placeholder — replace with your real project description and process notes.',
+        images:  [],
+        videos:  [],
+      },
+      {
+        title:   'Bag Hook',
         cat:     'Product Design',
         year:    '2024',
         version: 'v1.0',
         wip:     false,
-        desc:    'A conceptual exploration of lightweight composite materials and modular assembly systems. Placeholder — replace with your real project description and process notes.',
+        desc:    'Placeholder — replace with your real project description and process notes.',
+        images:  [],
+        videos:  [],
       },
       {
-        title:   'Form Study 01',
-        cat:     'Industrial Design',
-        year:    '2024',
-        version: 'v1.2',
-        wip:     false,
-        desc:    'A series of geometric form studies examining the interplay between surface tension and structural integrity. Placeholder description.',
-      },
-      {
-        title:   'Vessel Series',
+        title:   'Cement Ceramics',
         cat:     'Object Design',
-        year:    '2023',
-        version: 'v2.0',
+        year:    '2024',
+        version: 'v1.0',
         wip:     false,
-        desc:    'A collection of hand-finished vessels exploring the relationship between negative space and material weight. Placeholder description.',
+        desc:    'Placeholder — replace with your real project description and process notes.',
+        images:  [
+          'Cement Ceramics Project/CleanShot 2026-05-11 at 19.37.46.png',
+          'Cement Ceramics Project/CleanShot 2026-05-11 at 19.37.53.png',
+          'Cement Ceramics Project/CleanShot 2026-05-11 at 19.38.02.png',
+        ],
+        videos:  [],
+      },
+      {
+        title:   'Headlight',
+        cat:     'Product Design',
+        year:    '2024',
+        version: 'v1.0',
+        wip:     false,
+        desc:    'Placeholder — replace with your real project description and process notes.',
+        images:  [
+          'Headlight Project/CleanShot 2026-04-27 at 20.27.41.png',
+          'Headlight Project/CleanShot 2026-04-27 at 20.27.58.png',
+          'Headlight Project/CleanShot 2026-04-27 at 20.28.12.png',
+          'Headlight Project/CleanShot 2026-04-27 at 20.28.33.png',
+        ],
+        videos:  [
+          'Headlight Project/CleanShot 2026-04-27 at 20.36.17.mp4',
+          'Headlight Project/CleanShot 2026-04-28 at 19.42.41.mp4',
+        ],
+      },
+      {
+        title:   'Ligsalzstraße 17',
+        cat:     'Interior',
+        year:    '2023',
+        version: 'v1.0',
+        wip:     false,
+        desc:    'Placeholder — replace with your real project description and process notes.',
+        images:  [],
+        videos:  [],
+      },
+      {
+        title:   'Personal Site',
+        cat:     'Digital',
+        year:    '2025',
+        version: 'v1.0',
+        wip:     false,
+        desc:    'Placeholder — replace with your real project description and process notes.',
+        images:  [
+          'Personal Site Project/CleanShot 2026-05-15 at 23.45.16@2x.png',
+          'Personal Site Project/CleanShot 2026-05-15 at 23.45.20@2x.png',
+          'Personal Site Project/CleanShot 2026-05-15 at 23.50.27@2x.png',
+        ],
+        videos:  [
+          'Personal Site Project/CleanShot 2026-05-15 at 23.56.16.mp4',
+          'Personal Site Project/CleanShot 2026-05-16 at 06.55.49.mp4',
+        ],
+      },
+      {
+        title:   'Pill Organizer',
+        cat:     'Product Design',
+        year:    '2024',
+        version: 'v1.0',
+        wip:     false,
+        desc:    'Placeholder — replace with your real project description and process notes.',
+        images:  [],
+        videos:  [
+          'Pill Organizer Project/CleanShot 2026-04-29 at 18.16.31.mp4',
+        ],
+      },
+      {
+        title:   'Tripod',
+        cat:     'Product Design',
+        year:    '2024',
+        version: 'v1.0',
+        wip:     false,
+        desc:    'Placeholder — replace with your real project description and process notes.',
+        images:  [],
+        videos:  [],
+      },
+      {
+        title:   'Vacuum Holder',
+        cat:     'Product Design',
+        year:    '2024',
+        version: 'v1.0',
+        wip:     false,
+        desc:    'Placeholder — replace with your real project description and process notes.',
+        images:  [],
+        videos:  [],
       },
       {
         title:   '— / WIP',
@@ -708,14 +784,8 @@
         version: 'v0.1',
         wip:     true,
         desc:    '',
-      },
-      {
-        title:   '— / WIP',
-        cat:     'Work in Progress',
-        year:    '2025',
-        version: 'v0.1',
-        wip:     true,
-        desc:    '',
+        images:  [],
+        videos:  [],
       },
     ];
 
@@ -735,7 +805,7 @@
 
     /* ── SCENE ─────────────────────────────────────────────────── */
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xF6F6F6);
+    scene.background = new THREE.Color(0xFFFFFF);
 
     /* ── CAMERA ────────────────────────────────────────────────── */
     const camera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 100);
@@ -776,7 +846,7 @@
       new THREE.MeshStandardMaterial({ color: 0xF6F6F6, roughness: 1, metalness: 0 })
     );
     floor.rotation.x = -Math.PI / 2;
-    floor.position.y = 1.38;
+    floor.position.y = 0.98;
     floor.receiveShadow = true;
     scene.add(floor);
 
@@ -799,23 +869,28 @@
       })
     );
     platform.rotation.x = -Math.PI / 2;
-    platform.position.y = 1.4;
+    platform.position.y = 1.0;
     platform.receiveShadow = true;
     scene.add(platform);
 
     /* ── CAROUSEL ──────────────────────────────────────────────── */
     const RADIUS = 5.8;
     const carousel = new THREE.Group();
-    carousel.position.y = 1.4;
+    carousel.position.y = 1.0;
     scene.add(carousel);
 
     // Placeholder geometries — one per project
     const geos = [
+      new THREE.CylinderGeometry(0.18, 0.32, 1.6, 32),
       new THREE.BoxGeometry(0.85, 1.35, 0.85),
       new THREE.IcosahedronGeometry(0.72, 1),
       new THREE.CylinderGeometry(0.35, 0.58, 1.45, 7),
       new THREE.BoxGeometry(0.95, 1.2, 0.95),
       new THREE.OctahedronGeometry(0.72),
+      new THREE.CylinderGeometry(0.6, 0.6, 1.1, 32),
+      new THREE.BoxGeometry(1.1, 0.7, 0.6),
+      new THREE.ConeGeometry(0.55, 1.4, 6),
+      new THREE.TorusGeometry(0.55, 0.22, 12, 48),
     ];
 
     const items = PROJECTS.map((proj, i) => {
@@ -838,14 +913,32 @@
       group.add(ringMesh);
 
       /* main object */
-      const objMesh = new THREE.Mesh(
-        geos[i],
-        new THREE.MeshStandardMaterial({
-          color:     proj.wip ? 0x080808 : 0xBEBEBE,
-          roughness: proj.wip ? 0.97 : 0.12,
-          metalness: proj.wip ? 0.0  : 0.65,
-        })
-      );
+      let objMesh;
+      if (proj.title === 'Personal Site') {
+        // Thin sheet with site screenshot on front, noise on back
+        const loader = new THREE.TextureLoader();
+        const frontTex = loader.load('site_screenshot.png');
+        const backTex  = loader.load('noise_picture.jpg');
+        const sheetGeo = new THREE.BoxGeometry(1.6, 1.0, 0.04);
+        const mats = [
+          new THREE.MeshStandardMaterial({ color: 0xcccccc, roughness: 0.4, metalness: 0.1 }), // +X
+          new THREE.MeshStandardMaterial({ color: 0xcccccc, roughness: 0.4, metalness: 0.1 }), // -X
+          new THREE.MeshStandardMaterial({ color: 0xcccccc, roughness: 0.4, metalness: 0.1 }), // +Y
+          new THREE.MeshStandardMaterial({ color: 0xcccccc, roughness: 0.4, metalness: 0.1 }), // -Y
+          new THREE.MeshStandardMaterial({ map: frontTex, roughness: 0.3, metalness: 0.0 }),   // +Z front
+          new THREE.MeshStandardMaterial({ map: backTex,  roughness: 0.5, metalness: 0.0 }),   // -Z back
+        ];
+        objMesh = new THREE.Mesh(sheetGeo, mats);
+      } else {
+        objMesh = new THREE.Mesh(
+          geos[i],
+          new THREE.MeshStandardMaterial({
+            color:     proj.wip ? 0x080808 : 0xBEBEBE,
+            roughness: proj.wip ? 0.97 : 0.12,
+            metalness: proj.wip ? 0.0  : 0.65,
+          })
+        );
+      }
       objMesh.position.y = 0.9;
       objMesh.castShadow = true;
       group.add(objMesh);
@@ -969,7 +1062,24 @@
     dsSun.position.set(3, 5, 5);
     dsScene.add(dsSun);
 
-    let dsModelRef = null, dsClock2 = 0;
+    let dsModelRef   = null;
+    let dsClock2     = 0;
+    let dsVelX       = -0.006; // horizontal (Y-axis) — eases back to auto-spin
+    let dsVelY       = 0;      // vertical (X-axis)   — eases back to 0
+    let dsIsDragging = false;
+    let dsDragLastX  = 0;
+    let dsDragLastY  = 0;
+
+    const _qH = new THREE.Quaternion();
+    const _qV = new THREE.Quaternion();
+    const _axisY = new THREE.Vector3(0, 1, 0);
+    const _axisX = new THREE.Vector3(1, 0, 0);
+
+    function applyDsRotation(velH, velV) {
+      _qH.setFromAxisAngle(_axisY, velH);
+      _qV.setFromAxisAngle(_axisX, velV);
+      dsModelRef.quaternion.premultiply(_qH).premultiply(_qV);
+    }
 
     function sizeDs() {
       const w = dsCanvas.clientWidth;
@@ -985,24 +1095,119 @@
       requestAnimationFrame(dsLoop);
       dsClock2 += 0.016;
       if (dsModelRef) {
-        dsModelRef.rotation.y -= 0.006;
-        dsModelRef.position.y  = Math.sin(dsClock2 * 1.6) * 0.08;
+        if (!dsIsDragging) {
+          dsVelX += (-0.006 - dsVelX) * 0.03; // ease horizontal back to auto-spin
+          dsVelY *= 0.92;                       // decay vertical toward level
+          applyDsRotation(dsVelX, dsVelY);
+        }
+        dsModelRef.position.y = Math.sin(dsClock2 * 1.6) * 0.08;
       }
       dsRenderer.render(dsScene, dsCam);
     }
     dsLoop();
+
+    // Mouse drag
+    dsCanvas.style.cursor = 'grab';
+    dsCanvas.addEventListener('mousedown', (e) => {
+      dsIsDragging = true;
+      dsDragLastX  = e.clientX;
+      dsDragLastY  = e.clientY;
+      dsVelX = dsVelY = 0;
+      dsCanvas.style.cursor = 'grabbing';
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!dsIsDragging || !dsModelRef) return;
+      dsVelX = (e.clientX - dsDragLastX) * 0.012;
+      dsVelY = (e.clientY - dsDragLastY) * 0.012;
+      applyDsRotation(dsVelX, dsVelY);
+      dsDragLastX = e.clientX;
+      dsDragLastY = e.clientY;
+    });
+    window.addEventListener('mouseup', () => {
+      if (!dsIsDragging) return;
+      dsIsDragging = false;
+      dsCanvas.style.cursor = 'grab';
+    });
+
+    // Touch drag
+    dsCanvas.addEventListener('touchstart', (e) => {
+      dsIsDragging = true;
+      dsDragLastX  = e.touches[0].clientX;
+      dsDragLastY  = e.touches[0].clientY;
+      dsVelX = dsVelY = 0;
+    }, { passive: true });
+    dsCanvas.addEventListener('touchmove', (e) => {
+      if (!dsIsDragging || !dsModelRef) return;
+      dsVelX = (e.touches[0].clientX - dsDragLastX) * 0.012;
+      dsVelY = (e.touches[0].clientY - dsDragLastY) * 0.012;
+      applyDsRotation(dsVelX, dsVelY);
+      dsDragLastX = e.touches[0].clientX;
+      dsDragLastY = e.touches[0].clientY;
+    }, { passive: true });
+    dsCanvas.addEventListener('touchend', () => { dsIsDragging = false; });
 
     function updateDetailSection(idx) {
       const p = PROJECTS[idx];
       document.getElementById('ds-cat').textContent     = p.cat + ' — ' + p.year;
       document.getElementById('ds-title').textContent   = p.title;
       document.getElementById('ds-version').textContent = p.version;
-      document.getElementById('ds-content').style.display  = p.wip ? 'none' : 'flex';
-      document.getElementById('ds-wip-msg').style.display  = p.wip ? 'flex' : 'none';
+
+      const contentEl = document.getElementById('ds-content');
+      const wipEl     = document.getElementById('ds-wip-msg');
+
+      if (p.wip) {
+        contentEl.style.display = 'none';
+        wipEl.style.display     = 'flex';
+      } else {
+        contentEl.style.display = 'flex';
+        wipEl.style.display     = 'none';
+
+        // Build content dynamically
+        const hasMedia = (p.images && p.images.length) || (p.videos && p.videos.length);
+        let html = '';
+
+        // Overview block
+        html += `<div class="ds-block">
+          <div class="ds-block-label">Overview</div>
+          <p>${p.desc || 'Placeholder — replace with your real project description and process notes.'}</p>
+        </div>`;
+
+        if (hasMedia) {
+          // Images
+          if (p.images && p.images.length) {
+            p.images.forEach(src => {
+              html += `<div class="ds-block">
+                <img class="ds-img" src="${encodeURI(src)}" alt="" loading="lazy">
+              </div>`;
+            });
+          }
+          // Videos
+          if (p.videos && p.videos.length) {
+            p.videos.forEach(src => {
+              html += `<div class="ds-block">
+                <video class="ds-video" src="${encodeURI(src)}" controls playsinline></video>
+              </div>`;
+            });
+          }
+        } else {
+          // Placeholders for projects with no media yet
+          html += `<div class="ds-block">
+            <div class="ds-img-placeholder">Image / Photo</div>
+          </div>
+          <div class="ds-block">
+            <div class="ds-video-placeholder">▶ Video</div>
+          </div>`;
+        }
+
+        contentEl.innerHTML = html;
+      }
+
       if (dsModelRef) dsScene.remove(dsModelRef);
       dsModelRef = items[idx].objMesh.clone();
       dsModelRef.position.set(0, 0, 0);
-      dsModelRef.rotation.y = 0;
+      dsModelRef.quaternion.identity();
+      dsVelX = -0.006;
+      dsVelY = 0;
       dsScene.add(dsModelRef);
     }
 
