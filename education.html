@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Education — Gustav Thormod Nielsen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&family=Merriweather:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white:       #FFFFFF;
+      --off-white:   #F6F6F6;
+      --light-grey:  #E4E4E4;
+      --mid-grey:    #9A9A9A;
+      --dark-grey:   #2C2C2C;
+      --black:       #111111;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Merriweather', Georgia, serif;
+      background: var(--off-white);
+      color: var(--dark-grey);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 52px;
+      background: var(--off-white);
+    }
+
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 52px;
+      right: 52px;
+      height: 1px;
+      background: var(--light-grey);
+    }
+
+    .nav-name {
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dark-grey);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--mid-grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--dark-grey); }
+    .nav-links a.active { color: var(--dark-grey); }
+
+    .nav-cta {
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7AAFC8;
+      text-decoration: none;
+      border: 1px solid #A8D0E6;
+      padding: 8px 20px;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { color: #4E8FAD; border-color: #4E8FAD; }
+
+    /* ─── PAGE WRAPPER ────────────────────────────────────────── */
+    .page-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 148px 52px 110px;
+    }
+
+    /* ─── PAGE HEADER ─────────────────────────────────────────── */
+    .page-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 20px;
+    }
+
+    .page-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: var(--dark-grey);
+      margin-bottom: 80px;
+    }
+
+    /* ─── EDUCATION ENTRIES ───────────────────────────────────── */
+    .edu-entry {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0 56px;
+      padding: 44px 0;
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .edu-entry:last-child {
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .edu-years {
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--mid-grey);
+      padding-top: 4px;
+    }
+
+    .edu-status {
+      display: inline-block;
+      margin-top: 10px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      border: 1px solid var(--light-grey);
+      padding: 3px 8px;
+    }
+
+    .edu-body {}
+
+    .edu-degree {
+      font-family: 'Raleway', sans-serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: -0.015em;
+      color: var(--dark-grey);
+      margin-bottom: 6px;
+    }
+
+    .edu-institution {
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--mid-grey);
+      margin-bottom: 20px;
+    }
+
+    .edu-detail {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--mid-grey);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--light-grey);
+      padding: 28px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span { font-size: 11px; color: var(--mid-grey); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="index.html">Gustav Thormod Nielsen</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="education.html" class="active">Education</a></li>
+      <li><a href="experience.html">Experience</a></li>
+    </ul>
+    <a class="nav-cta" href="contact.html">Get In Touch</a>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-label">Background</div>
+    <h1 class="page-title">Education</h1>
+
+    <!-- TU Munich -->
+    <div class="edu-entry">
+      <div class="edu-left">
+        <div class="edu-years">2022 — Present</div>
+        <div class="edu-status">In Progress</div>
+      </div>
+      <div class="edu-body">
+        <div class="edu-degree">B.Sc. — 6th Semester</div>
+        <div class="edu-institution">Technical University of Munich, Munich</div>
+        <p class="edu-detail">Currently pursuing an undergraduate degree at one of Europe's leading technical universities, with a focus on design and engineering disciplines.</p>
+      </div>
+    </div>
+
+    <!-- ISD -->
+    <div class="edu-entry">
+      <div class="edu-left">
+        <div class="edu-years">— 2022</div>
+      </div>
+      <div class="edu-body">
+        <div class="edu-degree">International Baccalaureate</div>
+        <div class="edu-institution">International School of Düsseldorf, Düsseldorf</div>
+        <p class="edu-detail">Completed the International Baccalaureate programme at ISD, an English-language school serving an international community in Germany.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span>Gustav Thormod Nielsen</span>
+    <span>© 2025</span>
+  </footer>
+
+</body>
+</html>
