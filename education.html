@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Education — Gustav Thormod Nielsen</title>
+  <meta name="description" content="Education background of Gustav Thormod Nielsen." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&family=Merriweather:wght@300;400&display=swap" rel="stylesheet" />
   <style>
@@ -119,8 +120,44 @@
       font-weight: 300;
       letter-spacing: -0.03em;
       color: var(--dark-grey);
-      margin-bottom: 80px;
+      margin-bottom: 40px;
     }
+
+    /* ─── TABS ────────────────────────────────────────────────── */
+    .edu-tabs {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 0;
+      border-bottom: 1px solid var(--light-grey);
+      padding-bottom: 0;
+    }
+
+    .edu-tab {
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 0 0 16px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      margin-bottom: -1px;
+    }
+
+    .edu-tab:hover { color: var(--dark-grey); }
+
+    .edu-tab.active {
+      color: var(--dark-grey);
+      border-bottom-color: var(--dark-grey);
+    }
+
+    /* ─── TAB PANELS ──────────────────────────────────────────── */
+    .edu-panel { display: none; }
+    .edu-panel.active { display: block; }
 
     /* ─── EDUCATION ENTRIES ───────────────────────────────────── */
     .edu-entry {
@@ -200,9 +237,10 @@
   <nav>
     <a class="nav-name" href="index.html">Gustav Thormod Nielsen</a>
     <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="education.html" class="active">Education</a></li>
       <li><a href="experience.html">Experience</a></li>
+      <li><a href="education.html" class="active">Education</a></li>
     </ul>
     <a class="nav-cta" href="contact.html">Get In Touch</a>
   </nav>
@@ -212,29 +250,87 @@
     <div class="page-label">Background</div>
     <h1 class="page-title">Education</h1>
 
-    <!-- TU Munich -->
-    <div class="edu-entry">
-      <div class="edu-left">
-        <div class="edu-years">2022 — Present</div>
-        <div class="edu-status">In Progress</div>
-      </div>
-      <div class="edu-body">
-        <div class="edu-degree">B.Sc. — 6th Semester</div>
-        <div class="edu-institution">Technical University of Munich, Munich</div>
-        <p class="edu-detail">Currently pursuing an undergraduate degree at one of Europe's leading technical universities, with a focus on design and engineering disciplines.</p>
-      </div>
+    <!-- Tabs -->
+    <div class="edu-tabs">
+      <button class="edu-tab active" data-panel="formal">Formal</button>
+      <button class="edu-tab"        data-panel="informal">Informal</button>
     </div>
 
-    <!-- ISD -->
-    <div class="edu-entry">
-      <div class="edu-left">
-        <div class="edu-years">— 2022</div>
+    <!-- Formal panel -->
+    <div class="edu-panel active" id="panel-formal">
+
+      <div class="edu-entry">
+        <div class="edu-left">
+          <div class="edu-years">Oct 2023 — Present</div>
+          <div class="edu-status">In Progress</div>
+        </div>
+        <div class="edu-body">
+          <div class="edu-degree">BSc Management and Technology</div>
+          <div class="edu-institution">Technical University of Munich, Munich</div>
+          <p class="edu-detail">Specialising in Mechanical Engineering with a current GPA of 1.77. The programme combines rigorous technical training with business fundamentals across six semesters.</p>
+        </div>
       </div>
-      <div class="edu-body">
-        <div class="edu-degree">International Baccalaureate</div>
-        <div class="edu-institution">International School of Düsseldorf, Düsseldorf</div>
-        <p class="edu-detail">Completed the International Baccalaureate programme at ISD, an English-language school serving an international community in Germany.</p>
+
+      <div class="edu-entry">
+        <div class="edu-left">
+          <div class="edu-years">Aug 2017 — May 2023</div>
+        </div>
+        <div class="edu-body">
+          <div class="edu-degree">International Baccalaureate</div>
+          <div class="edu-institution">International School of Düsseldorf, Düsseldorf</div>
+          <p class="edu-detail">Graduated with a GPA of 1.3. Higher level courses in Economics, German Language & Literature, and Physics. Member of the International Honours Society.</p>
+        </div>
       </div>
+
+    </div>
+
+    <!-- Informal panel -->
+    <div class="edu-panel" id="panel-informal">
+
+      <div class="edu-entry">
+        <div class="edu-left">
+          <div class="edu-years">Apr 2024 — Jun 2024</div>
+        </div>
+        <div class="edu-body">
+          <div class="edu-degree">Business Plan Basics Seminar</div>
+          <div class="edu-institution">UnternehmerTUM Academy for Innovators, Munich</div>
+          <p class="edu-detail">Developed a luxury beverage container concept from brief to pitch. Covered market research, product development, and business plan fundamentals.</p>
+        </div>
+      </div>
+
+      <div class="edu-entry">
+        <div class="edu-left">
+          <div class="edu-years">Jun 2024</div>
+        </div>
+        <div class="edu-body">
+          <div class="edu-degree">Innovation Sprint</div>
+          <div class="edu-institution">UnternehmerTUM Academy for Innovators, Munich</div>
+          <p class="edu-detail">Developed an Innovation Hub concept for the City of Munich. Gained hands-on experience in ideation, consulting methodology, and pitching to stakeholders.</p>
+        </div>
+      </div>
+
+      <div class="edu-entry">
+        <div class="edu-left">
+          <div class="edu-years">Apr 2022</div>
+        </div>
+        <div class="edu-body">
+          <div class="edu-degree">TEDx Women's Event</div>
+          <div class="edu-institution">International School of Düsseldorf</div>
+          <p class="edu-detail">Led stage and venue design for the student-organised TEDx Women's event, alongside a related art exhibition. Member of the International Honours Society.</p>
+        </div>
+      </div>
+
+      <div class="edu-entry">
+        <div class="edu-left">
+          <div class="edu-years">Apr 2022</div>
+        </div>
+        <div class="edu-body">
+          <div class="edu-degree">Help the Homeless</div>
+          <div class="edu-institution">International School of Düsseldorf</div>
+          <p class="edu-detail">Team leader for a student-organised project coordinating long-term care packages for homeless people in Düsseldorf.</p>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -243,6 +339,17 @@
     <span>Gustav Thormod Nielsen</span>
     <span>© 2025</span>
   </footer>
+
+  <script>
+    document.querySelectorAll('.edu-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.edu-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.edu-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+      });
+    });
+  </script>
 
 </body>
 </html>
